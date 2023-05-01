@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ModalContext } from "../context/ModalContext";
 
 export const useModal = () => {
-  const { modal, setModal } = useContext(ModalContext);
+  const[modal, setModal] = useState(false);
 
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
