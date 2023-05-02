@@ -5,6 +5,7 @@ import { HiX } from 'react-icons/hi';
 import Modal from '../drawer/MenuDrawer';
 import { useModal } from '../../hooks/useModal';
 import NavItem from './home/NavItem';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const { modal, openModal, closeModal } = useModal();
@@ -12,7 +13,9 @@ const Navbar = () => {
   return (
     <>
       <nav className="container mx-auto py-5 flex items-center justify-between grow-0 shrink basis-auto relative z-0">
-        <img src={PokemonLogo} alt="Logo" className="w-44" />
+        <Link to="/">
+          <img src={PokemonLogo} alt="Logo" className="w-44" />
+        </Link>
         <div className="flex items-center gap-10">
           <Input />
 
@@ -36,28 +39,38 @@ const Navbar = () => {
         <div className="grid grid-cols-2 gap-5 pt-8 px-10">
           <NavItem
             label="Pokedex"
-            href="#"
+            href="/pokedex"
+            onClose={closeModal}
             className="bg-green-500 text-white shadow outline-none"
           />
-          <NavItem label="Moves" href="#" className="bg-pink-500 text-white" />
+          <NavItem
+            label="Moves"
+            href="#"
+            className="bg-pink-500 text-white"
+            onClose={closeModal}
+          />
           <NavItem
             label="Abilities"
             href="#"
+            onClose={closeModal}
             className="bg-blue-500 text-white"
           />
           <NavItem
             label="Items"
             href="#"
+            onClose={closeModal}
             className="bg-yellow-500 text-white"
           />
           <NavItem
             label="Locations"
             href="#"
+            onClose={closeModal}
             className="bg-purple-500 text-white"
           />
           <NavItem
             label="Type Effects"
             href="#"
+            onClose={closeModal}
             className="bg-amber-800 text-white"
           />
         </div>
