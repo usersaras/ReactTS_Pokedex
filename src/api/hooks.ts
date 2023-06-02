@@ -19,12 +19,32 @@ interface GET_POKEMON_VARIABLES {
   take: number;
 }
 
+export type POKEMON_TYPES =
+  | 'normal'
+  | 'fire'
+  | 'water'
+  | 'grass'
+  | 'electric'
+  | 'ice'
+  | 'fighting'
+  | 'poison'
+  | 'ground'
+  | 'flying'
+  | 'psychic'
+  | 'bug'
+  | 'rock'
+  | 'ghost'
+  | 'dark'
+  | 'dragon'
+  | 'steel'
+  | 'fairy';
+
 export interface POKEMON_DATA {
   id: number;
   name: string;
   pokemon_v2_pokemontypes: {
     pokemon_v2_type: {
-      name: string;
+      name: POKEMON_TYPES;
     };
   }[];
   pokemon_v2_pokemonsprites: { sprites: string[] };

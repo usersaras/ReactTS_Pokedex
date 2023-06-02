@@ -8,7 +8,19 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient({
   uri: 'https://beta.pokeapi.co/graphql/v1beta',
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          pokemon_v2_pokemons: {
+            merge<T>(existing = [], incoming: T[]) {
+              return [...existing, ...incoming];
+            },
+          },
+        },
+      },
+    },
+  }),
 });
 
 const root = ReactDOM.createRoot(

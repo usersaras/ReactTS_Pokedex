@@ -1,14 +1,9 @@
 import React from 'react';
 import Navbar from '../components/navbar/Navbar';
 import CenteredContainer from '../components/container/CenteredContainer';
-import EmblaCarousel from '../components/carousel/EmblaCarousel';
-import Charizard from '../assets/Home/banner-2.png';
-import Pikachu from '../assets/Home/banner-3.png';
-import { EmblaOptionsType } from 'embla-carousel-react';
 import { Outlet, useLocation } from 'react-router-dom';
 const Root = () => {
   const location = useLocation();
-  console.log(location);
 
   const checkRootPath = (path: string) => {
     if (path === '/') {

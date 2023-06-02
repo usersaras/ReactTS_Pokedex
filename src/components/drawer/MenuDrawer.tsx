@@ -1,10 +1,6 @@
 import { Dialog } from '@headlessui/react';
 import { Transition } from '@headlessui/react';
-import { HiX } from 'react-icons/hi';
-import Portal from '../../utils/portal/Portal';
 import { Fragment } from 'react';
-import NavItem from '../navbar/home/NavItem';
-import { log } from 'console';
 
 interface ModalProps {
   title?: string;

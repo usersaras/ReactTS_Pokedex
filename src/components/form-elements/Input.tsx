@@ -3,7 +3,7 @@ import { FaSearch } from 'react-icons/fa';
 
 const Input = () => {
   return (
-    <div className="border bg-white border-gray-300 inline-flex items-center rounded-md overflow-hidden">
+    <div className="border w-full bg-white inline-flex items-center rounded-md overflow-hidden">
       <input
         id="search"
         className="focus:outline-none w-full px-3 py-2"

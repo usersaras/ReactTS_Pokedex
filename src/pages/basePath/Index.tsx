@@ -1,12 +1,11 @@
 import React from 'react';
 
-import CenteredContainer from '../components/container/CenteredContainer';
-import Charizard from '../assets/Home/banner-2.png';
-import Pikachu from '../assets/Home/banner-3.png';
+import CenteredContainer from '../../components/container/CenteredContainer';
+import Charizard from '../../assets/Home/banner-2.png';
+import Pikachu from '../../assets/Home/banner-3.png';
 
-import EmblaCarousel from '../components/carousel/EmblaCarousel';
+import EmblaCarousel from '../../components/carousel/EmblaCarousel';
 import { EmblaOptionsType } from 'embla-carousel-react';
-import { useLocation } from 'react-router-dom';
 
 const Home = () => {
   const OPTIONS: EmblaOptionsType = {
