@@ -1,10 +1,18 @@
-import React, { SetStateAction, useEffect, useRef, useState } from 'react';
+import React, {
+  SetStateAction,
+  lazy,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import ListPage from '../../components/list-page/ListPage';
 import { useGetAllPokemons } from '../../api/hooks';
 import RenderPokemon from '../../utils/renderItems';
 import SearchAndFilter from '../../components/pokedex/SearchAndFilter';
-import FilterDrawer from '../../components/drawer/FilterDrawer';
 import PokedexFilterContext from '../../context/PokedexFilterContext';
+import './Pokedex.css';
+
+const FilterDrawer = lazy(() => import('../../components/drawer/FilterDrawer'));
 
 const Pokedex = () => {
   let take = 24;
@@ -53,8 +61,11 @@ const Pokedex = () => {
 
   return (
     <PokedexFilterContext>
-      <div className="flex gap-5 overflow-y-hidden">
-        <div className="basis-full flex flex-col gap-5 transition-all mt-3">
+      <div className="flex gap-5 w-full relative h-screen overflow-y-scroll hide-scrollbar">
+        <div
+          className="basis-full flex flex-col gap-5 transition-all mt-3"
+          style={{ scrollbarWidth: 'none' }}
+        >
           <SearchAndFilter />
           <ListPage
             items={data!.pokemon_v2_pokemon}
@@ -65,7 +76,7 @@ const Pokedex = () => {
             className="transition-all"
           />
         </div>
-        <FilterDrawer className="basis-1/2 h-full mt-3" />
+        <FilterDrawer className="h-[80%] mt-3 sticky top-0 rounded-md shadow-lg overflow-hidden" />
       </div>
     </PokedexFilterContext>
   );

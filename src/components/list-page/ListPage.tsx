@@ -27,7 +27,12 @@ const ListPage = <T,>({
   const lastElementRef = useInfiniteLoading(loading, fetchMore, hasMore);
 
   return (
-    <div className={'grid grid-cols-3 gap-5 ' + className}>
+    <div
+      className={
+        'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 items-stretch gap-x-5 gap-y-28 mt-32 ' +
+        className
+      }
+    >
       {items.map((item, index) => {
         if (items.length === index + 1) {
           return renderItems(item, lastElementRef);

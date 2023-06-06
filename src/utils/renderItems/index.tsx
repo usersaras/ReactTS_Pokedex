@@ -1,14 +1,21 @@
-import { LegacyRef } from 'react';
+import { LegacyRef, useContext } from 'react';
 import { POKEMON_DATA } from '../../api/hooks';
+import getClassByType from '../getStyleClasses/getBgByType';
+import { Link, Navigate } from 'react-router-dom';
+import { FilterContext } from '../../context/PokedexFilterContext';
+import TypeTag from '../../components/pokedex/TypeTag';
 
 const RenderPokemon = <T extends POKEMON_DATA>(
   item: T,
   ref?: LegacyRef<HTMLDivElement>
 ): React.ReactNode => {
-  const wrapperDivClasses = `shadow border border-gray-100 rounded-md flex gap-5`;
-  const imageWrapperClass = 'px-5 py-7 w-full';
-  const pokemonTypeClass = 'rounded-full bg-slate-100 px-4 text-sm py-2';
-  const imageClasses = 'w-full object-contain';
+  const wrapperDivClasses = `shadow-lg bg-white border border-gray-100 rounded-md flex flex-col items-center h-full relative`;
+  const imageWrapperClass =
+    'px-5 flex items-center content-center bottom-3/4 pt-2 pb-4 absolute';
+
+  const imageClasses = ' mx-auto object-contain';
+
+  const { setSelectedPokemonId, setShowFilter } = useContext(FilterContext);
 
   const showPokemonInfo = (item: T) => {
     return (
@@ -16,23 +23,24 @@ const RenderPokemon = <T extends POKEMON_DATA>(
         {' '}
         <div className={imageWrapperClass}>
           <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${item.id}.png`}
+            src={`https://projectpokemon.org/images/normal-sprite/${item.name}.gif`}
             alt={item.name}
             className={imageClasses}
             loading="lazy"
           />
         </div>
-        <div className="w-full px-5 py-7 flex flex-col gap-2 ">
-          <h3 className="first-letter:uppercase text-lg font-bold text-gray-600">
-            {item.name}
-          </h3>
-          <div className="flex gap-2">
+        <div className="w-full px-5 pb-7 pt-10 flex flex-col gap-2">
+          <div className="flex flex-col">
+            <p className="text-xs text-slate-500 font-semibold text-center">
+              #{item.id.toString().padStart(3, '0')}
+            </p>
+            <h3 className="first-letter:uppercase text-center text-lg font-bold text-gray-600">
+              {item.name}
+            </h3>
+          </div>
+          <div className="flex gap-2 justify-center flex-wrap">
             {item.pokemon_v2_pokemontypes.map((type, idx) => {
-              return (
-                <p key={idx} className={pokemonTypeClass}>
-                  {type.pokemon_v2_type.name}
-                </p>
-              );
+              return <TypeTag typeName={type.pokemon_v2_type.name} />;
             })}
           </div>
         </div>
@@ -42,13 +50,26 @@ const RenderPokemon = <T extends POKEMON_DATA>(
 
   if (ref) {
     return (
-      <div key={item.name} className={wrapperDivClasses} ref={ref}>
+      <div
+        className={wrapperDivClasses}
+        ref={ref}
+        onClick={() => {
+          setSelectedPokemonId(item.id);
+          setShowFilter(true);
+        }}
+      >
         {showPokemonInfo(item)}
       </div>
     );
   } else {
     return (
-      <div key={item.name} className={wrapperDivClasses}>
+      <div
+        className={wrapperDivClasses}
+        onClick={() => {
+          setSelectedPokemonId(item.id);
+          setShowFilter(true);
+        }}
+      >
         {showPokemonInfo(item)}
       </div>
     );

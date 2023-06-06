@@ -21,12 +21,6 @@ const SearchAndFilter = () => {
           <Icon name="pokeball" className="h-6 w-6 fill-white" />
         </div>
       </Button>
-      <Button
-        className="border border-pink-600 hover:shadow-pink-100 hover:shadow-xl transition-shadow cursor-pointer"
-        onClick={toggleShowFilter}
-      >
-        <HiAdjustments className="h-5 w-5 text-pink-600" />
-      </Button>
     </div>
   );
 };

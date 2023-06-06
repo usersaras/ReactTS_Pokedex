@@ -15,7 +15,7 @@ const Root = () => {
 
   return (
     <div
-      className={`relative ${
+      className={`relative bg-slate-50 ${
         location.pathname === '/' ? 'overflow-hidden' : 'overflow-auto'
       }`}
     >
