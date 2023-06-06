@@ -23,7 +23,10 @@ const RenderPokemon = <T extends POKEMON_DATA>(
         {' '}
         <div className={imageWrapperClass}>
           <img
-            src={`https://projectpokemon.org/images/normal-sprite/${item.name}.gif`}
+            src={`https://projectpokemon.org/images/normal-sprite/${item.name.replace(
+              '-',
+              '_'
+            )}.gif`}
             alt={item.name}
             className={imageClasses}
             loading="lazy"
