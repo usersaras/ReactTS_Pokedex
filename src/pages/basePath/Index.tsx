@@ -38,9 +38,9 @@ const Home = () => {
               delectus incidunt dicta est! Expedita earum quod culpa provident
               adipisci.
             </p>
-            <button className="py-2 px-4 rounded-full bg-black text-white">
+            <a href="/pokedex" className="py-2 px-4 rounded-full bg-black text-white">
               Explore Pokemons
-            </button>
+            </a>
           </div>
           <div className="w-3/5">
             <EmblaCarousel options={OPTIONS} slides={carouselSlides} />
