@@ -61,10 +61,9 @@ const Pokedex = () => {
 
   return (
     <PokedexFilterContext>
-      <div className="flex gap-5 w-full relative h-screen overflow-y-scroll hide-scrollbar">
+      <div className="flex items-start gap-5 w-full relative">
         <div
-          className="basis-full flex flex-col gap-5 transition-all mt-3"
-          style={{ scrollbarWidth: 'none' }}
+          className="basis-full flex flex-col gap-5 transition-all relative"
         >
           <SearchAndFilter />
           <ListPage
@@ -76,7 +75,7 @@ const Pokedex = () => {
             className="transition-all"
           />
         </div>
-        <FilterDrawer className="h-[80%] mt-3 sticky top-0 rounded-md shadow-lg overflow-hidden" />
+        <FilterDrawer className="sticky top-[104px] rounded-md shadow-lg h-[712.523px]" />
       </div>
     </PokedexFilterContext>
   );

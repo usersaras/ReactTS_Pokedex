@@ -7,12 +7,14 @@ import { useModal } from '../../hooks/useModal';
 import NavItem from './home/NavItem';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({sticky}: {
+  sticky?: boolean;
+}) => {
   const { modal, openModal, closeModal } = useModal();
-
+  const stickyClasses = sticky ?  "sticky top-0 bg-slate-50 z-50":"";
   return (
     <>
-      <nav className="container mx-auto py-5 flex items-center justify-between grow-0 shrink basis-auto relative z-0">
+      <nav className={`${stickyClasses} container mx-auto py-5 flex items-center justify-between grow-0 shrink basis-auto`}>
         <Link to="/">
           <img src={PokemonLogo} alt="Logo" className="w-44" />
         </Link>
