@@ -6,29 +6,21 @@ import Modal from '../drawer/MenuDrawer';
 import { useModal } from '../../hooks/useModal';
 import NavItem from './home/NavItem';
 import { Link } from 'react-router-dom';
+import Icon from '../../assets/icons/Icon';
 
 const Navbar = () => {
   const { modal, openModal, closeModal } = useModal();
 
   return (
     <>
-      <nav className="container mx-auto py-5 flex items-center justify-between grow-0 shrink basis-auto relative z-0">
-        <Link to="/">
-          <img src={PokemonLogo} alt="Logo" className="w-44" />
-        </Link>
-        <div className="flex items-center gap-10">
-          <Input />
-
-          <div
-            className="inline-grid grid-cols-2 [&>*]:text-gray-600 cursor-pointer"
-            onClick={openModal}
-          >
-            <FaSquare />
-            <FaSquare />
-            <FaSquare />
-            <FaSquare />
+      <nav className="w-full bg-white sticky top-0 mt-8 z-10 mb-10">
+        <div className="container mx-auto bg-slate-100 px-3 rounded flex">
+          <div className="border-b-2 border-b-cyan-600 text-cyan-800 font-medium px-5 py-5 flex gap-2">
+            <Icon name="pokeball" className="fill-cyan-800 w-6" />
+            <p>Pokedex</p>
           </div>
         </div>
+        <div></div>
       </nav>
       <Modal
         title="Menus"

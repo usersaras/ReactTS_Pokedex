@@ -3,7 +3,6 @@ import './App.css';
 import Home from './pages/basePath/Index';
 import { ModalProvider } from './context/ModalContext';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Navbar from './components/navbar/Navbar';
 import Root from './pages/Root';
 
 const Pokedex = React.lazy(() => import('./pages/basePath/Pokedex'));

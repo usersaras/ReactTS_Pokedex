@@ -118,7 +118,7 @@ export const useGetAllPokemons = (
 export const useGetPokemonDetail = (
   options: QueryHookOptions<
     {
-      pokemon_v2_pokemon_by_pk: POKEMON_DETAIL;
+      pokemon_v2_pokemon_by_pk?: POKEMON_DETAIL;
       prevPokemon: PREV_NEXT_POKEMON_TYPE;
       nextPokemon: PREV_NEXT_POKEMON_TYPE;
     },

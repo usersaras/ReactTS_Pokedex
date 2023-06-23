@@ -10,14 +10,11 @@ import getClassByType from '../../utils/getStyleClasses/getBgByType';
 import { POKEMON_TYPES } from '../../types/PokemonTypes';
 import TypeTag from '../pokedex/TypeTag';
 import StatsTag from '../pokedex/StatsTag';
-import {
-  FaChevronCircleLeft,
-  FaChevronLeft,
-  FaChevronRight,
-} from 'react-icons/fa';
+import { FaChevronRight } from 'react-icons/fa';
 import PokemonButton from '../pokedex/PokemonButton';
 import { Link } from 'react-router-dom';
 import Icon from '../../assets/icons/Icon';
+import Loader from '../loader/Loader';
 
 interface FilterDrawerProps {
   className: string;
@@ -52,17 +49,12 @@ const FilterDrawer = ({ className }: FilterDrawerProps) => {
         leaveFrom="translate-x-0 basis-1/3"
         leaveTo="translate-x-full basis-0"
       >
-        <div className="bg-white border-r p-5 rounded-start h-full flex flex-col justify-center">
+        <div className="bg-white border-r p-5 rounded-start h-full justify-center">
           {loading || !data?.pokemon_v2_pokemon_by_pk ? (
-            <>
-              <Icon
-                name="pokeball"
-                className="fill-slate-300 w-20 mx-auto animate-spin"
-              />
-            </>
+            <Loader />
           ) : (
             <div className="flex flex-col gap-8">
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-5">
                 <button
                   className="flex gap-2 items-center justify-end text-sm underline underline-offset-2 text-slate-500"
                   onClick={collapseDrawer}
@@ -87,7 +79,7 @@ const FilterDrawer = ({ className }: FilterDrawerProps) => {
                     {data?.pokemon_v2_pokemon_by_pk.name}
                   </p>
                 </div>
-                <div className="flex gap-2 justify-center">
+                <div className="flex gap-3 justify-center">
                   {data?.pokemon_v2_pokemon_by_pk.pokemon_v2_pokemontypes.map(
                     (pokemonType) => {
                       return (
@@ -153,7 +145,7 @@ const FilterDrawer = ({ className }: FilterDrawerProps) => {
                   className={`${getClassByType(
                     data?.pokemon_v2_pokemon_by_pk.pokemon_v2_pokemontypes[0]
                       .pokemon_v2_type.name as POKEMON_TYPES
-                  )} px-3 py-2 rounded text-white text-medium w-full`}
+                  )} px-3 py-2 rounded text-white text-medium w-full mb-5`}
                 >
                   View Details
                 </button>

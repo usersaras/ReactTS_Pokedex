@@ -11,6 +11,7 @@ import RenderPokemon from '../../utils/renderItems';
 import SearchAndFilter from '../../components/pokedex/SearchAndFilter';
 import PokedexFilterContext from '../../context/PokedexFilterContext';
 import './Pokedex.css';
+import Loader from '../../components/loader/Loader';
 
 const FilterDrawer = lazy(() => import('../../components/drawer/FilterDrawer'));
 
@@ -56,16 +57,17 @@ const Pokedex = () => {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-screen w-screen right-0 top-0  absolute">
+        <Loader />
+      </div>
+    );
   }
 
   return (
     <PokedexFilterContext>
-      <div className="flex gap-5 w-full relative h-screen overflow-y-scroll hide-scrollbar">
-        <div
-          className="basis-full flex flex-col gap-5 transition-all mt-3"
-          style={{ scrollbarWidth: 'none' }}
-        >
+      <div className="flex items-start relative gap-5 w-full ">
+        <div className="basis-full flex flex-col gap-5 transition-all relative mt-3">
           <SearchAndFilter />
           <ListPage
             items={data!.pokemon_v2_pokemon}
@@ -76,7 +78,7 @@ const Pokedex = () => {
             className="transition-all"
           />
         </div>
-        <FilterDrawer className="h-[80%] mt-3 sticky top-0 rounded-md shadow-lg overflow-hidden" />
+        <FilterDrawer className=" mt-3 rounded-md shadow-lg border overflow-y-scroll sticky z-20 top-28 h-[80vh]  hide-scrollbar" />
       </div>
     </PokedexFilterContext>
   );

@@ -14,22 +14,13 @@ const Root = () => {
   };
 
   return (
-    <div
-      className={`relative bg-slate-50 ${
-        location.pathname === '/' ? 'overflow-hidden' : 'overflow-auto'
-      }`}
-    >
-      {checkRootPath(location.pathname) && (
-        <div className="absolute min-h-full w-full bg-lime-500 opacity-80 z-0 -skew-x-12 left-[40%]"></div>
-      )}
-      <div className="relative z-10 h-screen flex flex-col">
-        <Navbar />
-        <section className="grow shrink basis-auto">
-          <CenteredContainer className="flex items-center h-full gap-14">
-            <Outlet />
-          </CenteredContainer>
-        </section>
-      </div>
+    <div className="flex flex-col">
+      <Navbar />
+      <section className="grow shrink basis-auto">
+        <CenteredContainer className="flex items-center h-full gap-14">
+          <Outlet />
+        </CenteredContainer>
+      </section>
     </div>
   );
 };

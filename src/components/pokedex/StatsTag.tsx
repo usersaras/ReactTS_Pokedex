@@ -2,7 +2,7 @@ import React from 'react';
 
 interface StatsTagProps {
   attributeHeading: string;
-  attributeValue: string;
+  attributeValue: string | undefined;
 }
 
 const StatsTag = ({ attributeHeading, attributeValue }: StatsTagProps) => {
@@ -12,7 +12,7 @@ const StatsTag = ({ attributeHeading, attributeValue }: StatsTagProps) => {
         {attributeHeading}
       </h6>
       <p className="text-sm bg-slate-100 p-2 rounded-full text-center">
-        {attributeValue}
+        {attributeValue ?? 'N/A'}
       </p>
     </div>
   );
