@@ -5,17 +5,9 @@ import { Outlet, useLocation } from 'react-router-dom';
 const Root = () => {
   const location = useLocation();
 
-  const checkRootPath = (path: string) => {
-    if (path === '/') {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   return (
-    <div className="flex flex-col">
-      <Navbar />
+    <div className="flex flex-col mx-5 md:mx-0">
+      <Navbar currentPath={location.pathname} />
       <section className="grow shrink basis-auto">
         <CenteredContainer className="flex items-center h-full gap-14">
           <Outlet />
