@@ -1,24 +1,42 @@
 import PokemonLogo from '../../assets/pokemon_logo.png';
 import Input from '../form-elements/Input';
-import { FaSquare } from 'react-icons/fa';
-import { HiX } from 'react-icons/hi';
 import Modal from '../drawer/MenuDrawer';
 import { useModal } from '../../hooks/useModal';
 import NavItem from './home/NavItem';
-import { Link } from 'react-router-dom';
 import Icon from '../../assets/icons/Icon';
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+interface NavbarProps {
+  currentPath: string;
+}
+
+const Navbar = ({ currentPath }: NavbarProps) => {
   const { modal, openModal, closeModal } = useModal();
+
+  const getNavClass = (pathName: string) => {
+    if (pathName === currentPath) {
+      return 'nav-active';
+    } else {
+      return 'nav-item';
+    }
+  };
 
   return (
     <>
       <nav className="w-full bg-white sticky top-0 mt-8 z-10 mb-10">
-        <div className="container mx-auto bg-slate-100 px-3 rounded flex">
-          <div className="border-b-2 border-b-cyan-600 text-cyan-800 font-medium px-5 py-5 flex gap-2">
-            <Icon name="pokeball" className="fill-cyan-800 w-6" />
-            <p>Pokedex</p>
-          </div>
+        <div className="container mx-auto bg-slate-100 px-5 rounded flex gap-3">
+          <Link to="/">
+            <div className={getNavClass('/')}>
+              <Icon name="home" className=" w-6" />
+              <p className="text-md">Home</p>
+            </div>
+          </Link>
+          <Link to="/pokedex">
+            <div className={getNavClass('/pokedex')}>
+              <Icon name="pokeball" className="w-6" />
+              <p className="text-md">Pokedex</p>
+            </div>
+          </Link>
         </div>
         <div></div>
       </nav>
