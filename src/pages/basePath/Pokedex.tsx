@@ -12,6 +12,8 @@ import SearchAndFilter from '../../components/pokedex/SearchAndFilter';
 import PokedexFilterContext from '../../context/PokedexFilterContext';
 import './Pokedex.css';
 import Loader from '../../components/loader/Loader';
+import { useInfiniteLoading } from '../../hooks/useInfiniteLoading';
+import useDebounce from '../../hooks/useDebounce';
 
 const FilterDrawer = lazy(() => import('../../components/drawer/FilterDrawer'));
 
@@ -19,13 +21,21 @@ const Pokedex = () => {
   let take = 24;
   const skip = useRef(0);
 
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const debouncedQuery = useDebounce<string>(searchQuery);
+
+  const setSearchVariable = (query: string) => {
+    setSearchQuery(query);
+  };
+
   const { data, loading, error, fetchMore } = useGetAllPokemons({
-    variables: { skip: 0, take },
+    variables: { skip: 0, take, query: debouncedQuery || '' },
   });
 
   const [hasMore, setHasMore] = useState(true);
 
-  const totalCount = 1279;
+  const totalCount = 10275;
 
   useEffect(() => {
     if (data?.pokemon_v2_pokemon) {
@@ -52,6 +62,8 @@ const Pokedex = () => {
     });
   };
 
+  const lastElementRef = useInfiniteLoading(loading, loadMore, hasMore);
+
   if (error) {
     return <div>{error.message}</div>;
   }
@@ -68,7 +80,10 @@ const Pokedex = () => {
     <PokedexFilterContext>
       <div className="flex items-start relative gap-5 w-full ">
         <div className="basis-full flex flex-col gap-5 transition-all relative mt-3">
-          <SearchAndFilter />
+          <SearchAndFilter
+            searchVariable={searchQuery}
+            setSearchVariable={setSearchVariable}
+          />
           <ListPage
             items={data!.pokemon_v2_pokemon}
             renderItems={RenderPokemon}
@@ -76,6 +91,7 @@ const Pokedex = () => {
             hasMore={hasMore}
             fetchMore={loadMore}
             className="transition-all"
+            lastElementRef={lastElementRef}
           />
         </div>
         <FilterDrawer className=" mt-3 rounded-md shadow-lg border overflow-y-scroll sticky z-20 top-28 h-[80vh]  hide-scrollbar" />

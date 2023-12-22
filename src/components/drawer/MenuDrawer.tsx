@@ -17,8 +17,6 @@ const Modal = ({
   modalState,
   onClose,
 }: ModalProps) => {
-  console.log(modalState);
-
   return (
     <Transition
       appear={true}

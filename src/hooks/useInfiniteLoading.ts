@@ -16,7 +16,6 @@ export const useInfiniteLoading = (
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
           // setLoadingMore(true);
-          console.log('b');
 
           fetchMore();
         } else {
@@ -27,8 +26,6 @@ export const useInfiniteLoading = (
       if (node) {
         observer.current!.observe(node);
       }
-
-      console.log(node);
     },
     [fetchMore, hasMore, loading]
   );

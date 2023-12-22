@@ -2,8 +2,12 @@ import { useQuery, gql, QueryHookOptions } from '@apollo/client';
 import { POKEMON_TYPES } from '../types/PokemonTypes';
 
 const GET_ALL_POKEMONS = gql`
-  query GetAllPokemons($skip: Int!, $take: Int!) {
-    pokemon_v2_pokemon(offset: $skip, limit: $take) {
+  query GetAllPokemons($skip: Int!, $take: Int!, $query: String) {
+    pokemon_v2_pokemon(
+      offset: $skip
+      limit: $take
+      where: { name: { _iregex: $query } }
+    ) {
       id
       name
       pokemon_v2_pokemontypes {
@@ -64,6 +68,7 @@ interface PREV_NEXT_POKEMON_TYPE {
 interface GET_POKEMON_VARIABLES {
   skip: number;
   take: number;
+  query: string | undefined;
 }
 
 interface GET_POKEMON_DETAIL_VARIABLES {

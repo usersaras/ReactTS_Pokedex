@@ -21,8 +21,12 @@ interface FilterDrawerProps {
 }
 
 const FilterDrawer = ({ className }: FilterDrawerProps) => {
-  const { showFilter, selectedPokemonId, setSelectedPokemonId, setShowFilter } =
-    useContext<FilterContextType>(FilterContext);
+  const {
+    showFilter,
+    selectedPokemonId,
+    setSelectedPokemonId,
+    setShowFilterFalse,
+  } = useContext<FilterContextType>(FilterContext);
 
   const { data, loading } = useGetPokemonDetail({
     variables: {
@@ -33,7 +37,7 @@ const FilterDrawer = ({ className }: FilterDrawerProps) => {
   });
 
   const collapseDrawer = () => {
-    setShowFilter(false);
+    setShowFilterFalse();
   };
 
   return (
@@ -44,9 +48,9 @@ const FilterDrawer = ({ className }: FilterDrawerProps) => {
         appear={true}
         enter="transition-all duration-200 ease-out"
         enterFrom="translate-x-full basis-0"
-        enterTo="translate-x-0 basis-1/3"
+        enterTo="translate-x-0 basis-full xl:basis-1/3"
         leave="transition-all duration-200 ease-out"
-        leaveFrom="translate-x-0 basis-1/3"
+        leaveFrom="translate-x-0 basis-full xl:basis-1/3"
         leaveTo="translate-x-full basis-0"
       >
         <div className="bg-white border-r p-5 rounded-start h-full justify-center">

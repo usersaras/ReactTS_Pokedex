@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CenteredContainer from '../../components/container/CenteredContainer';
 import Charizard from '../../assets/Home/banner-2.png';
 import Pikachu from '../../assets/Home/banner-3.png';

@@ -15,7 +15,8 @@ const RenderPokemon = <T extends POKEMON_DATA>(
 
   const imageClasses = ' mx-auto object-contain';
 
-  const { setSelectedPokemonId, setShowFilter } = useContext(FilterContext);
+  const { setSelectedPokemonId, setShowFilterTrue, setShowFilterFalse } =
+    useContext(FilterContext);
 
   const showPokemonInfo = (item: T) => {
     return (
@@ -43,7 +44,7 @@ const RenderPokemon = <T extends POKEMON_DATA>(
           </div>
           <div className="flex gap-2 justify-center flex-wrap">
             {item.pokemon_v2_pokemontypes.map((type, idx) => {
-              return <TypeTag typeName={type.pokemon_v2_type.name} />;
+              return <TypeTag key={idx} typeName={type.pokemon_v2_type.name} />;
             })}
           </div>
         </div>
@@ -54,11 +55,12 @@ const RenderPokemon = <T extends POKEMON_DATA>(
   if (ref) {
     return (
       <div
+        key={item.id}
         className={wrapperDivClasses}
         ref={ref}
         onClick={() => {
           setSelectedPokemonId(item.id);
-          setShowFilter(true);
+          setShowFilterTrue();
         }}
       >
         {showPokemonInfo(item)}
@@ -67,10 +69,11 @@ const RenderPokemon = <T extends POKEMON_DATA>(
   } else {
     return (
       <div
+        key={item.id}
         className={wrapperDivClasses}
         onClick={() => {
           setSelectedPokemonId(item.id);
-          setShowFilter(true);
+          setShowFilterTrue();
         }}
       >
         {showPokemonInfo(item)}

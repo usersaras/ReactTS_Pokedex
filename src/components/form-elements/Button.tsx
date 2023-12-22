@@ -9,7 +9,7 @@ interface ButtonProps {
 const Button = ({ children, className, onClick }: ButtonProps) => {
   return (
     <button
-      className={`py-2 px-4 rounded-md font-sm font-medium ${
+      className={`py-2 px-4 rounded font-sm font-medium ${
         className ? className : ''
       }`}
       onClick={onClick}

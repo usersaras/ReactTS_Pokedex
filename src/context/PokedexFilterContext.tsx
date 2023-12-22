@@ -3,19 +3,24 @@ import useFilter from '../hooks/useFilter';
 
 export interface FilterContextType {
   showFilter: boolean;
-  setShowFilter: React.Dispatch<SetStateAction<boolean>>;
+  setShowFilterTrue: () => void;
+  setShowFilterFalse: () => void;
   selectedPokemonId: number;
   setSelectedPokemonId: React.Dispatch<SetStateAction<number>>;
 }
 
 export const FilterContext = React.createContext<FilterContextType>({
   showFilter: false,
-  setShowFilter: () => {},
+  setShowFilterTrue: () => {},
+  setShowFilterFalse: () => {},
   selectedPokemonId: 1,
   setSelectedPokemonId: () => {},
 });
 const PokedexFilterContext = ({ children }: { children: JSX.Element }) => {
   const { showFilter, setShowFilter } = useFilter();
+
+  const setShowFilterTrue = () => setShowFilter(true);
+  const setShowFilterFalse = () => setShowFilter(false);
 
   const [selectedPokemonId, setSelectedPokemonId] = useState(0);
 
@@ -23,7 +28,8 @@ const PokedexFilterContext = ({ children }: { children: JSX.Element }) => {
     <FilterContext.Provider
       value={{
         showFilter,
-        setShowFilter,
+        setShowFilterTrue,
+        setShowFilterFalse,
         selectedPokemonId,
         setSelectedPokemonId,
       }}
